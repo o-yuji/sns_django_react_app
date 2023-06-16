@@ -41,7 +41,7 @@ class User(AbstractBaseUser,PermissionsMixin):
 class Profile(models.Model):
     nickName = models.CharField(max_length=30)
     userPro = models.OneToOneField(settings.AUTH_USER_MODEL,related_name='userPro',on_delete=models.CASCADE)
-    creates_on = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(auto_now_add=True)
     img = models.ImageField(blank=True,null=True,upload_to=upload_path)
 
     def __str__(self):
@@ -59,7 +59,7 @@ class FriendRequest(models.Model):
         return f"{self.askFrom} ----> {self.askTo}"
 
 class Message(models.Model):
-    Message = models.CharField(max_length=150)
+    message = models.CharField(max_length=150)
     sender = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='sender',on_delete=models.CASCADE)
     receiver = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='receiver',on_delete=models.CASCADE)
 
